@@ -13,6 +13,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class TodoService {
+	
+	/* 
+	 * 2023-02-26 에러 수정
+	 * 수정내용 :
+		Column "T.USERID" not found;
+			조회 쿼리에서 userId제거하여 추가 에러 확인 (이상없음) -> userId 컬럼명 user로 변경
+	*/ 
 
 	@Autowired
 	private TodoRepository repository;
@@ -25,7 +32,7 @@ public class TodoService {
 		
 		log.info("Entity id : {} is saved.", entity.getId());
 		
-		return repository.findByUserId(entity.getUserId());
+		return repository.findByUserIdQuery(entity.getUsers());
 	}
 	
 	// 리팩토링한 메서드
@@ -35,7 +42,7 @@ public class TodoService {
 			throw new RuntimeException("Entity cannot be null.");
 		}
 		
-		if(entity.getUserId() == null) {
+		if(entity.getUsers() == null) {
 			log.warn("Unknown user.");
 			throw new RuntimeException("Unknown user.");
 		}
