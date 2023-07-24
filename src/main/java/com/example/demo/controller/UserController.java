@@ -91,10 +91,10 @@ public class UserController {
 
 	2.jwt 적용 후 토큰 발행 - 토큰을 https://jwt.io/페이지에서 디코딩(HS512, Base64)하면 alg, sub, iss, iat, exp등의 정보가 출력된다.
 	{
-	    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MDI4ODA4NDg5ODY3ODUzMDE4OTg2Nzg3NTJhMDAwMCIsImlzcyI6ImRlbW8gYXBwIiwiaWF0IjoxNjkwMTc4MTkxLCJleHAiOjE2OTAyNjQ1OTF9.CCQTg_e-FWJZHNPu3PnSEdBgL0_lbA5cL8o6T1jj7DKSjDB0CQ2bXHF-BIOHWnG_TRBWXdBFw63ngWeHKHsCxA",
+	    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MDI4ODA4NDg5ODcxYjNmMDE4OTg3MWI1NjA5MDAwMCIsImlzcyI6ImRlbW8gYXBwIiwiaWF0IjoxNjkwMTg4ODY1LCJleHAiOjE2OTAyNzUyNjV9.cWnIZmuVcUBJ_oN8BNItKeIDyr0_GXEvZWjwUYGC_oFOCa32QVLhTObCK8sR3w_N6--gZjmkXVNlR5_1aIchqw",
 	    "username": "hello@world.com",
 	    "password": null,
-	    "id": "402880848986785301898678752a0000"
+	    "id": "4028808489871b3f0189871b56090000"
 	}
 	 * */
 	@PostMapping("/signin")
