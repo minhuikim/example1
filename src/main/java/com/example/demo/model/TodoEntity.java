@@ -18,13 +18,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "todo")
 public class TodoEntity {
-	
-	/* 
+
+	/*
 	 * 2023-02-26 에러 수정
 	 * 수정내용 :
 		Column "T.USERID" not found;
 			조회 쿼리에서 userId제거하여 추가 에러 확인 (이상없음) -> userId 컬럼명 user로 변경
-	*/ 
+	*/
 	@Id
 	@GeneratedValue(generator="system-uuid")
 	@GenericGenerator(name="system-uuid", strategy = "uuid")

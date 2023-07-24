@@ -27,9 +27,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// https://mvnrepository.com/artifact/com.google.guava/guava
 	implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+	
 	// jjwt 라이브러리, JWT를 이용한 인증을 위해 추가
 	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	// jdk11의 jwt 토큰 생성 관련 모듈
+	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 /*
 tasks.named('test') {

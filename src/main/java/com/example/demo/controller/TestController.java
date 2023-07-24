@@ -22,7 +22,7 @@ public class TestController {
 
 	@Autowired
 	private TodoService service;
-	
+
 	@GetMapping("/test")
 	public ResponseEntity<?> testTodo() {
 		String str = service.testService();
@@ -31,29 +31,29 @@ public class TestController {
 		ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
 		return ResponseEntity.ok().body(response);
 	}
-	
+
 	@GetMapping
 	public String testController() {
 		return "Hello World";
 	}
-	
+
 	@GetMapping("/testGetMapping")
 	public String testControllerWithPath() {
 		return "Hello World! testGetMapping";
 	}
-	
+
 	// GET으로 localhost:8080/test/123 요청 시 Hello World! ID 123 반환
 	@GetMapping("/{id}")
 	public String testControllerWithPathVariables(@PathVariable(required = false) int id) {
 		return "Hello World! ID " + id;
 	}
-	
+
 	// GET으로 localhost:8080/test/testRequestParam?id=123 요청 시 Hello World! ID 123 반환
 	@GetMapping("/testRequestParam")
 	public String testControllerRequestParam(@RequestParam(required = false) int id) {
 		return "Hello World! ID " + id;
 	}
-	
+
 	// /test 경로는 이미 존재하므로 /test/testRequestBody로 지정
 	/*
 	 * 포스트맨에서 Body - raw - JSON 형태로 { "id" : 123, "message" : "Hello ?" } 요청 시 Hello World! ID 123 Message : Hello ? 반환
@@ -62,9 +62,9 @@ public class TestController {
 	public String testControllerRequestBody(@RequestBody TestRequestBodyDTO testRequestBodyDTO) {
 		return "Hello World! ID " + testRequestBodyDTO.getId() + " Message : " + testRequestBodyDTO.getMessage();
 	}
-	
+
 	/*
-	 * localhost:8080/test/testResponseBody 요청 시 
+	 * localhost:8080/test/testResponseBody 요청 시
 	   {
 		    "error": null,
 		    "data": [
@@ -80,7 +80,7 @@ public class TestController {
 		ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
 		return response;
 	}
-	
+
 	/*
 	 * localhost:8080/test/testResponseEntity 요청 시
 		{

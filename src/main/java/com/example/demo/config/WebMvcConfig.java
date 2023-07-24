@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration	// 스프링 빈으로 등록
 public class WebMvcConfig implements WebMvcConfigurer {
 	private final long MAX_AGE_SECS = 3600;
-	
+
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		// 모든 경로에 대해

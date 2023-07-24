@@ -11,10 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	public UserEntity create(final UserEntity userEntity) {
 		if(userEntity == null || userEntity.getUsername() == null) {
 			throw new RuntimeException("Invalid arguments");
@@ -24,7 +24,7 @@ public class UserService {
 			log.warn("Username already exists {}", username);
 			throw new RuntimeException("Username already exists");
 		}
-		
+
 		return userRepository.save(userEntity);
 	}
 
