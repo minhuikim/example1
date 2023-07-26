@@ -41,7 +41,7 @@ public class TodoService {
 		}
 
 		// (5) 새 Todo 리스트를 가져와 리턴한다.
-		return retrieve(entity.getUsers());
+		return retrieve(entity.getUserId());
 	}
 
 	public List<TodoEntity> update(final TodoEntity entity) {
@@ -73,7 +73,7 @@ public class TodoService {
 //		}
 
 		// Retrieve Todo에서 만든 메서드를 이용해 유저의 모든 Todo리스트를 리턴한다.
-		return retrieve(entity.getUsers());
+		return retrieve(entity.getUserId());
 	}
 
 	public List<TodoEntity> retrieve(final String userId) {
@@ -88,7 +88,7 @@ public class TodoService {
 
 		log.info("Entity id : {} is saved.", entity.getId());
 
-		return repository.findByUserIdQuery(entity.getUsers());
+		return repository.findByUserIdQuery(entity.getUserId());
 	}
 
 	// 리팩토링한 메서드
@@ -98,7 +98,7 @@ public class TodoService {
 			throw new RuntimeException("Entity cannot be null.");
 		}
 
-		if(entity.getUsers() == null) {
+		if(entity.getUserId() == null) {
 			log.warn("Unknown user.");
 			throw new RuntimeException("Unknown user.");
 		}
