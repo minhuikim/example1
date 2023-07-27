@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,8 @@ public class UserController {
 
 	@Autowired
 	private TokenProvider tokenProvider;
+	
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	/*
 	[요청]
@@ -42,6 +46,7 @@ public class UserController {
 	    "password": null,
 	    "id": "402880848973de39018973defa350001"
 	}
+	20220727 password를 passwordEncoder를 해서 가져오도록 수정
 	 * */
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO) {
@@ -52,7 +57,7 @@ public class UserController {
 			// 요청을 이용해 저장할 유저 만들기
 			UserEntity user = UserEntity.builder()
 					.username(userDTO.getUsername())
-					.password(userDTO.getPassword())
+					.password(passwordEncoder.encode(userDTO.getPassword()))
 					.build();
 			// 서비스를 이용해 리포지터리에 유저 저장
 			UserEntity registeredUser = userService.create(user);
@@ -101,7 +106,8 @@ public class UserController {
 	public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO) {
 		UserEntity user = userService.getByCredentials(
 				userDTO.getUsername(),
-				userDTO.getPassword());
+				userDTO.getPassword(),
+				passwordEncoder);
 
 		if(user != null) {
 			// Token 생성
