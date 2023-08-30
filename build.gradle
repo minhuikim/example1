@@ -35,9 +35,31 @@ dependencies {
 	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
 	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	
+	// mysql을 사용하기 위해 mysql-connector 추가
+	runtimeOnly 'mysql:mysql-connector-java'
 }
-/*
-tasks.named('test') {
-	useJUnitPlatform()
+
+task('release') {
+	/* ./gradlew build를 먼저 실행하라는 뜻 */
+	dependsOn("build")
+	
+	doLast {
+		def stdout = new ByteArrayOutputStream()
+		/* exec - 커맨드 라인 프로세서; 파워셀/터미널에서 실행하는 것과 동일 */
+		exec {
+			/* $eb setenv SPRING_PROFILES_ACTIVE=prod */
+			commandLine 'eb', 'setenv', 'SPRING_PROFILES_ACTIVE=prod'
+			standardOutput = stdout
+		}
+		/* 결과 로깅을 위한 작업 */
+		println "eb setenv SPRING_PROFILES_ACTIVE=prod :\n$stdout";
+		exec {
+			/* $eb deploy */
+			commandLine 'eb', 'deploy'
+			standardOutput = stdout
+		}
+		println "eb deploy :\n$stdout";
+		println "Release succeeded";
+	}
 }
-*/
